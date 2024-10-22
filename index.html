@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>Space Invaders Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div id="board"></div>
+        <button id="start-button">Start Game</button>
+        <div id="score">Score: 0</div>
+    </div>
+    <audio id="shootMusic">
+        <source src="assets/img/shoot.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="InvaderkilledMusic">
+        <source src="assets/img/Invaderkilled.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="background-music" loop>
+        <source src="assets/img/music.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="game.js"></script>
+    <script src="player.js"></script>
+    <script src="bullet.js"></script>
+    <script src="enemy.js"></script>
+    <script src="board.js"></script>
+</body>
+</html>
