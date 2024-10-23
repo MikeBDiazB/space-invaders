@@ -10,8 +10,10 @@ class Game {
         this.invaderKilledMusic = document.getElementById("InvaderkilledMusic");
         document.getElementById('start-button').addEventListener('click', () => this.start());
 
+
         this.tick = 1;
     }
+
 
     start() {
         console.log("start")
@@ -20,25 +22,30 @@ class Game {
             this.render();
             this.enemyShoot();
 
+
             this.tick++;
             if (this.tick === 60) {
                 this.tick = 1;
             }
         }, 1000 / 60);
 
+
         this.enemies.forEach(enemy => enemy.render());
         this.setupKeyListeners();
         if (this.music) { this.music.play(); }
     }
+
 
     render() {
         this.player.render();
         this.enemies.forEach(enemy => enemy.render()); // Render enemies here
     }
 
+
     move() {
         this.player.move();
         this.enemies.forEach(enemy => enemy.move()); // Move enemies here
+
 
         if (this.enemies.some(enemy => {
             return enemy.x < 0 || enemy.x + enemy.width > this.board.offsetWidth;
@@ -47,10 +54,12 @@ class Game {
         }
     }
 
+
     setupKeyListeners() {
         window.addEventListener('keydown', this.handleKeyPress.bind(this));
         window.addEventListener('keyup', this.handleKeyUp.bind(this));
     }
+
 
     handleKeyPress(event) {
         event.preventDefault();
@@ -63,6 +72,7 @@ class Game {
         }
     }
 
+
     handleKeyUp(event) {
         event.preventDefault();
         if (event.key === 'ArrowLeft') {
@@ -71,6 +81,7 @@ class Game {
             this.player.movements.right = false;
         }
     }
+
 
     spawnEnemies() {
         let y = 20;
@@ -86,6 +97,7 @@ class Game {
         }
     }
 
+
     removeEnemy(enemy) {
         const index = this.enemies.indexOf(enemy);
         if (index > -1) {
@@ -96,17 +108,19 @@ class Game {
         this.updateScore(); // Update the score display
         if (this.invaderKilledMusic) { this.invaderKilledMusic.play(); }
 
+
         // Check if all enemies are destroyed
         if (this.enemies.length === 0) {
-            alert("All enemies destroyed! Respawning enemies...");
-            this.spawnEnemies(); // Respawn the enemies
-            this.enemies.forEach(enemy => enemy.render()); // Render the new enemies
+        this.spawnEnemies(); // Respawn the enemies
+        this.enemies.forEach(enemy => enemy.render()); // Render the new enemies
         }
     }
+
 
     updateScore() {
         document.getElementById('score').textContent = `Score: ${this.score}`; // Update score display
     }
+
 
     enemyShoot() {
         if (this.tick % 59 === 0) {
@@ -122,5 +136,5 @@ class Game {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => new Game());
 
+document.addEventListener('DOMContentLoaded', () => new Game());

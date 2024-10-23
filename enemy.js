@@ -10,6 +10,7 @@ class Enemy {
         this.speed = speed; // Assign speed to the enemy
     }
 
+
     render() {
         this.element.style.left = `${this.x}px`;
         this.element.style.top = `${this.y}px`;
@@ -18,10 +19,12 @@ class Enemy {
         document.getElementById('board').appendChild(this.element);
     }
 
+
     move() {
         this.x += this.speed; // Use speed to adjust movement
     }
 }
+
 
 
 

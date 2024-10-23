@@ -10,9 +10,11 @@ class Bullet {
         this.speed = 5; // Bullet speed
     }
 
+
     render() {
         document.getElementById('board').appendChild(this.element);
     }
+
 
     move(game) {
         const interval = setInterval(() => {
@@ -22,7 +24,9 @@ class Bullet {
                 this.y -= this.speed;  // Player bullets move upward
             }
 
+
             this.element.style.top = `${this.y}px`;
+
 
             if (!this.isEnemy) {
                 game.enemies.forEach(enemy => {
@@ -34,26 +38,30 @@ class Bullet {
                 });
             } else {
                 if (this.isColliding(game.player)) {
+                    console.log("colisiono")
                     game.player.getHit();
                     clearInterval(interval);
                     this.element.remove();  // Remove bullet on collision with player
                 }
             }
 
-            const boardHeight = document.getElementById('board').offsetHeight; 
+
+            const boardHeight = document.getElementById('board').offsetHeight;
             const bulletHeight = this.element.offsetHeight; // Get the bullet's height
             if (this.y < 0 || this.y + bulletHeight > boardHeight) {  // Adjusted game boundary for bullets
                 clearInterval(interval);
                 this.element.remove();
-            } 
+            }
         }, 50); // Closing the setInterval function correctly
     } // <-- Closing bracket for the move method
+
 
     isColliding(enemy) {
         const bulletWidth = this.element.offsetWidth; // Get bullet width
         const bulletHeight = this.element.offsetHeight; // Get bullet height
         const enemyWidth = enemy.element.offsetWidth; // Get enemy width
         const enemyHeight = enemy.element.offsetHeight; // Get enemy height
+
 
         return !(
             this.x + bulletWidth < enemy.x || // Bullet is to the left of the enemy

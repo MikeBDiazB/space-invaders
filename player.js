@@ -8,7 +8,7 @@ class Player {
         this.board = board;
         this.boardWidth = this.board.offsetWidth;
         this.playerWidth = 40; // Same as the player's CSS width
-        this.lives = 3;
+        this.life = 3;
         this.shootMusic = document.getElementById('shootMusic');
         this.vx = 3;
         this.movements = {
@@ -17,10 +17,12 @@ class Player {
         }
     }
 
+
     render() {
         this.element.style.left = `${this.x}px`;
         this.board.appendChild(this.element);
     }
+
 
     move() {
         if (this.movements.left && this.x > 0) {
@@ -31,6 +33,7 @@ class Player {
         this.render(); // Call render to update player position
     }
 
+
     shoot(game) {
         const bullet = new Bullet(this.x + 18, this.y);
         bullet.render();
@@ -40,13 +43,20 @@ class Player {
         }
     }
 
+
     getHit() {
-        this.lives -= 1;
-        if (this.lives <= 0) {
-            alert('Game Over! You died.');
+        this.life -= 1;
+        this.updateLifeDisplay(); // Update lives display after losing a life
+    
+        if (this.life <= 0) {
             window.location.reload(); // Reload the game when lives reach 0
-        } else {
-            alert(`You got hit! Lives left: ${this.lives}`);
         }
     }
+    
+    // Separate method to update the lives display:
+    updateLifeDisplay() {
+        document.getElementById('playerLife').textContent = `Life: ${this.life}`; // Update the lives display
+    }
 }
+
+
