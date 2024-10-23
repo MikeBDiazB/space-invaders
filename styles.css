@@ -32,7 +32,7 @@ body {
     position: absolute;
     bottom: 10px;
     left: calc(50% - 20px);
-}
+}   
 
 .bullet {
     width: 5px;
@@ -43,10 +43,7 @@ body {
 
 .enemy {
     box-sizing: border-box;
-    width: 40px;
-    height: 40px;
     position: absolute;
-    top: 0;
 }
 
 #score {
