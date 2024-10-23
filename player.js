@@ -15,7 +15,9 @@ class Player {
             left: false,
             right: false
         }
+        this.canShoot = true; // Cooldown flag for shooting
     }
+    
 
 
     render() {
@@ -35,12 +37,21 @@ class Player {
 
 
     shoot(game) {
+        if (!this.canShoot) return; // Prevent shooting if cooldown is active
+
         const bullet = new Bullet(this.x + 18, this.y);
         bullet.render();
         bullet.move(game);
+
         if (this.shootMusic) {
             this.shootMusic.play();
         }
+
+        // Set cooldown: player cannot shoot again for 0.5 seconds
+        this.canShoot = false;
+        setTimeout(() => {
+            this.canShoot = true; // Allow shooting after 0.5 seconds
+        }, 100); // Cooldown time of 0.5 seconds (500 milliseconds)
     }
 
 
